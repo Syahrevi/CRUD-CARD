@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="bootstrap.css">
+    <script src="bootstrap.bundle.js"></script>
+    <script src="jquery.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <h1><span class="badge badge-primary">Input Data</span></h1>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Nama</span>
+            </div>
+            <input type="text" id="nmd" class="form-control" placeholder="Nama Depan">
+            <input type="text" id="nmb" class="form-control" placeholder="Nama Belakang">
+            <div id="validname" class="invalid-feedback">
+                Nama Invalid
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" style="margin-top: 10px;">No Hp</span>
+                </div>
+                <input type="number" id="nomor" class="form-control" placeholder="No hp" style="margin-top: 10px;">
+                <div class="invalid-feedback" id="validnum">
+                    No hp Invalid
+                </div>
+            </div>
+        </div>
+        
+            <label for=""><b>Gender</b></label>
+            <br>
+                <input class="custom-control-radio" type="radio" name="jkl" value="Pria">Pria
+                &nbsp;
+                <input class="custom-control-radio" type="radio" name="jkl" value="Wanita">Wanita
+            <div class="input-group-prepend">
+                <select class="custom-select" name="" id="jenjang">
+                <span class="input-group-text">Jenjang</span>
+                        <option value="null">Pilih Jenjang</option>
+                        <option value="TK">TK</option>
+                        <option value="SD">SD</option>
+                        <option value="SMP">SMP</option>
+                        <option value="SMK">SMK</option>
+                </select>
+            </div>
+            <br>
+            <label><b>Hobi</b></label>
+            <br>
+            <input class="custom-control-checkbox" type="checkbox" name="" id="baca" value="Membaca">Membaca
+            &nbsp;
+            <input class="custom-control-checkbox" type="checkbox" name="" id="nulis" value="Menulis">Menulis
+            &nbsp;
+            <input class="custom-control-checkbox" type="checkbox" name="" id="gambar" value="Menggambar">Menggambar
+            <div class="input-group form-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Alamat</span>
+                </div>
+                <textarea style="resize: none" class="form-control" name="" id="alamat" cols="80" rows="5"></textarea>
+            </div>
+            <input class="btn btn-info" type="submit" style="margin-bottom: 30px;" name="" id="send" value="kirim">
+            </div>
+
+            <div class="card container" id="card">
+                <!-- <div class="card" style="width: 200px; position: absolute;left: 0px;">
+                    <div class="card-body">
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+                </div>
+                <div class="card" style="width: 200px; position: absolute;left: 200px; top: 200px;">
+                    <div class="card-body">
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+                </div> -->
+            </div>
+
+        </div>
+        <style>
+        .thumbnail {
+            background-color: white;
+            text-align: center;
+            padding: 2px;
+            width: 225px;
+            height: 250px;
+            margin: 10px;
+            float: left;
+            border-radius: 10px
+		}
+        </style>
+
+        <script>
+            $(document).ready(function () {
+                var namadepan = [];
+                var namabelakang = [];
+                var nomor = [];
+                var gender = [];
+                var jenjang = [];
+                var hobi = [];
+                var alamat = [];
+
+                $('#nmd').keyup(function () {
+                    var namad = $('#nmd').val();
+                    var namab = $('#nmb').val();
+                    if (namad == "") {
+                        $('#nmd').addClass("is-invalid");
+                        $('#nmd').removeClass("is-valid");
+                    }else{
+                        $('#nmd').addClass("is-valid");
+                        $('#nmd').removeClass("is-invalid");
+                    }
+
+                    if (namad != "" && namab != "") {
+                        $('#validname').addClass("valid-feedback");
+                        $('#validname').removeClass("invalid-feedback");
+                        $('#validname').text("Nama valid");
+                    }else { 
+                        $('#validname').addClass("invalid-feedback");
+                        $('#validname').removeClass("valid-feedback");
+                        $('#validname').text("Nama invalid");
+                    }
+                    
+                });
+
+                $('#nmb').keyup(function () {
+                    var namad = $('#nmd').val();
+                    var namab = $('#nmb').val(); 
+                    if (namab == "") {
+                        $('#nmb').addClass("is-invalid");
+                        $('#nmb').removeClass("is-valid");
+                    }else{
+                        $('#nmb').addClass("is-valid");
+                        $('#nmb').removeClass("is-invalid");
+                    }
+
+                    if (namab != "" && namad != "") {
+                        $('#validname').addClass("valid-feedback");
+                        $('#validname').removeClass("invalid-feedback");
+                        $('#validname').text("Nama valid");
+                    }else { 
+                        $('#validname').addClass("invalid-feedback");
+                        $('#validname').removeClass("valid-feedback");
+                        $('#validname').text("Nama invalid");
+                    }
+                });
+                 
+                $('#nomor').keyup(function () { 
+                    var nmr = $('#nomor').val();
+                    if (nmr == "") {
+                        $('#nomor').addClass("is-invalid");
+                        $('#nomor').removeClass("is-valid");
+                        $('#validnum').addClass("invalid-feedback");
+                        $('#validnum').removeClass("valid-feedback");
+                        $('#validnum').text("No hp invalid");
+                    }else {
+                        $('#nomor').addClass("is-valid");
+                        $('#nomor').removeClass("is-invalid");
+                        $('#validnum').addClass("valid-feedback");
+                        $('#validnum').removeClass("invalid-feedback");
+                        $('#validnum').text("No hp valid");
+                    }
+                });
+
+                $('#jenjang').change(function () { 
+                    var jenj = $('#jenjang').val();
+                    if (jenj == "null") {
+                        $('#jenjang').addClass("is-invalid");
+                        $('#jenjang').removeClass("is-valid");
+                    } else {
+                        $('#jenjang').addClass("is-valid");
+                        $('#jenjang').removeClass("is-invalid");
+                    }
+                });
+
+                $('#alamat').keyup(function () { 
+                    var addr = $('#alamat').val();
+                    if (addr == "") {
+                        $('#alamat').addClass("is-invalid");
+                        $('#alamat').removeClass("is-valid");
+                    } else {
+                        $('#alamat').addClass("is-valid");
+                        $('#alamat').removeClass("is-invalid");
+                    }
+                });
+                
+                function show() {
+                    $('#card').html("");
+                    for (var i = 0; i < namadepan.length; i++) {
+                        document.getElementById('card').innerHTML += 
+                        '<div class="card bg-primary row thumbnail">' + 
+                        '<div class="card-body">' + 
+                        '<p class="card-text text-white">' +
+                        "Nama: "+ namadepan[i] + ' ' + namabelakang[i] + '<br>' +
+                        "Nomor: "+ nomor[i] + '<br>' +
+                        "Gender: "+ gender[i] + '<br>' +
+                        "Jenjang: "+ jenjang[i] + '<br>' +
+                        "Hobi: "+ hobi[i] + '<br>' +
+                        "Alamat: "+ alamat[i]
+                        '</p></div></div>'
+                    }
+                }
+
+                $('#send').click(function () { 
+                    var namad = $('#nmd').val();
+                    var namab = $('#nmb').val();
+                    var nmr = $('#nomor').val();
+                    var gndr = $('input:radio[name=jkl]:checked').val();
+                    var jenj = $('#jenjang').val();
+                    var addr = $('#alamat').val();
+
+                    var hobi1 = $('#baca:checked').val();
+                    var hobi2 = $('#nulis:checked').val();
+                    var hobi3 = $('#gambar:checked').val();
+                    if (hobi1 == undefined) {hobi1=""}
+                    if (hobi2 == undefined) {hobi2=""}
+                    if (hobi3 == undefined) {hobi3=""}
+                    var addhobi = hobi1 + " " + hobi2 + " " + hobi3;
+
+                    if (namad != "" && namab != "" && nmr != "" && gndr != undefined  && jenj != "null" && addhobi != "" && addr != "") {
+                        namadepan.push(namad);
+                        namabelakang.push(namab);
+                        nomor.push(nmr);
+                        gender.push(gndr);
+                        jenjang.push(jenj);
+                        hobi.push(addhobi);
+                        alamat.push(addr);
+                        show();    
+                    }else{
+                        alert("Isi form kosong")
+                        if (namad == "") {
+                            $('#nmd').addClass("is-invalid");
+                            $('#nmd').removeClass("is-valid");
+                        }else{
+                            $('#nmd').addClass("is-valid");
+                            $('#nmd').removeClass("is-invalid");
+                        }
+
+                        if (namab == "") {
+                            $('#nmb').addClass("is-invalid");
+                            $('#nmb').removeClass("is-valid");
+                        }else{
+                            $('#nmb').addClass("is-valid");
+                            $('#nmb').removeClass("is-invalid");
+                        }
+
+                        if (namab != "" && namad != "") {
+                            $('#validname').addClass("valid-feedback");
+                            $('#validname').removeClass("invalid-feedback");
+                            $('#validname').text("Nama valid");
+                        }else { 
+                            $('#validname').addClass("invalid-feedback");
+                            $('#validname').removeClass("valid-feedback");
+                            $('#validname').text("Nama invalid");
+                        }
+
+                        if (nmr == "") {
+                            $('#nomor').addClass("is-invalid");
+                            $('#nomor').removeClass("is-valid");
+                            $('#validnum').addClass("invalid-feedback");
+                            $('#validnum').removeClass("valid-feedback");
+                            $('#validnum').text("No hp invalid");
+                        }else {
+                            $('#nomor').addClass("is-valid");
+                            $('#nomor').removeClass("is-invalid");
+                            $('#validnum').addClass("valid-feedback");
+                            $('#validnum').removeClass("invalid-feedback");
+                            $('#validnum').text("No hp valid");
+                        }
+
+                        if (jenj == "null") {
+                            $('#jenjang').addClass("is-invalid");
+                            $('#jenjang').removeClass("is-valid");
+                        } else {
+                            $('#jenjang').addClass("is-valid");
+                            $('#jenjang').removeClass("is-invalid");
+                        }
+                        
+                        if (addr == "") {
+                            $('#alamat').addClass("is-invalid");
+                            $('#alamat').removeClass("is-valid");
+                        } else {
+                            $('#alamat').addClass("is-valid");
+                            $('#alamat').removeClass("is-invalid");
+                        }
+                    }
+                });
+                
+            });
+        </script>
+    </body>
+</html>
